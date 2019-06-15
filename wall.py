@@ -1,7 +1,7 @@
 # 50 destructable walls
 # 5 powerups
 
-class wall():
+class wall:
     count = 0
 
     def __init__(self, is_destructable, is_destroyed):

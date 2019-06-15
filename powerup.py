@@ -1,2 +1,2 @@
-class powerup():
+class powerup:
     is_destroyed = False
