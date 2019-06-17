@@ -35,4 +35,3 @@ class maze:
                 else:
                     print(0, end='')
             print()
-        print(self.maze[i][j])
