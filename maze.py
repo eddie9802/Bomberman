@@ -15,19 +15,16 @@ class maze:
         # build the maze with powerups and insert (un)/destrojable walls
         for i in range(MAZE_SIZE):
             for j in range(MAZE_SIZE):
-                if (i < 3 or i > MAZE_SIZE - 4) and (j == MAZE_SIZE - 1 or j == 0):
-                    self.maze[i][j] = 0
-                    self.maze[j][i] = 0
-                elif i % 2 == 1 and j % 2 == 1:
+                if i % 2 == 1 and j % 2 == 1:
                     self.maze[i][j] = wall(is_destructable = False, is_destroyed = False)
                 else:
                     self.maze[i][j] = wall(is_destructable = True, is_destroyed = False)
 
-        # for i in range(0, MAZE_SIZE, MAZE_SIZE-1):
-        #     for j in range(MAZE_SIZE):
-        #         if j < 3 or j > MAZE_SIZE - 4:
-        #             self.maze[i][j] = 0
-        #             self.maze[j][i] = 0
+        for i in range(0, MAZE_SIZE, MAZE_SIZE-1):
+            for j in range(MAZE_SIZE):
+                if j < 3 or j > MAZE_SIZE - 4:
+                    self.maze[i][j] = 0
+                    self.maze[j][i] = 0
         
         for i in range(MAZE_SIZE):
             for j in range(MAZE_SIZE):
