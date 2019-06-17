@@ -5,6 +5,10 @@ from maze import maze
 
 # pygame.draw.rect(screen, (0, 200, 0), pygame.Rect(30, 30, 60, 60))
 
+BLACK = (0, 0, 0)
+
+MARGIN = 5
+
 def main():
     
     # Game setup
