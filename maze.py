@@ -43,13 +43,13 @@ class maze:
 
     # Moves the bomberman by changing his x,y value
     def move_bomberman(self, move_x, move_y):
-        if self.player.x_pos + move_x < MAZE_SIZE and self.player.x_pos + move_x >= 0: # Checks if x move is valid
-            if self.maze[self.player.x_pos + move_x][self.player.y_pos] == 0:
+        if self.player.x_pos + move_x < MAZE_SIZE and self.player.x_pos + move_x >= 0: # Checks if y move is within array boundaries
+            if self.maze[self.player.x_pos + move_x][self.player.y_pos] == 0: # Checks if next move is an empty square
                 self.maze[self.player.x_pos][self.player.y_pos] = 0 
                 self.player.x_pos = self.player.x_pos + move_x
                 self.maze[self.player.x_pos][self.player.y_pos] = self.player
-        if self.player.y_pos + move_y < MAZE_SIZE and self.player.y_pos + move_y >= 0: # Checks if y move is valid
-            if self.maze[self.player.x_pos][self.player.y_pos + move_y] == 0:
+        if self.player.y_pos + move_y < MAZE_SIZE and self.player.y_pos + move_y >= 0: # Checks if y move is within array boundaries
+            if self.maze[self.player.x_pos][self.player.y_pos + move_y] == 0: # Checks if next move is an empty square
                 self.maze[self.player.x_pos][self.player.y_pos] = 0 
                 self.player.y_pos = self.player.y_pos + move_y
                 self.maze[self.player.x_pos][self.player.y_pos] = self.player
