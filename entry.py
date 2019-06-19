@@ -12,8 +12,8 @@ RED = (255, 0, 0)
 GREEN = (152, 139, 152)
 
 # Sets the height and width of each grid location
-WIDTH = 20
-HEIGHT = 20
+WIDTH = 90
+HEIGHT = 90
 
 # Margin between each cell
 MARGIN = 1
@@ -46,7 +46,7 @@ def main():
     # Graphics setup
     pygame.init()
     pygame.display.set_caption('Bomberman')
-    screen = pygame.display.set_mode([1200, 800])
+    screen = pygame.display.set_mode([990, 990])
     #bg = pygame.transform.scale(pygame.image.load("bg.png"), (1200, 800))
     clock = pygame.time.Clock() # Manages how fast the screen updates
     #screen.blit(bg, (0, 0))
