@@ -20,7 +20,7 @@ MARGIN = 1
 
 def draw_board(screen, m):
     screen.fill(BLACK)
-    for j in range(m.MAZE_SIZE):
+    for j in range(m.MAZE_SIZE -1 , -1, -1):
         for i in range(m.MAZE_SIZE):
             color = WHITE
             if isinstance(m.maze[i][j], wall) and not m.maze[i][j].is_destructable:
@@ -59,17 +59,13 @@ def main():
                 playing = False
             elif event.type == pygame.KEYDOWN:
                 if event.key == ord("w"):
-                    m.move_bomberman(0, 1)
-                    m.print_maze()
+                    m.move_bomberman(0, -1)
                 if event.key == ord("d"):
-                    m.move_bomberman(1, 0)
-                    m.print_maze()
+                    m.move_bomberman(1, 0)   
                 if event.key == ord("a"):
                     m.move_bomberman(-1, 0)
-                    m.print_maze()
                 if event.key == ord("s"):
-                    m.move_bomberman(0, -1)
-                    m.print_maze()
+                    m.move_bomberman(0, 1)      
         draw_board(screen, m)      
         pygame.display.flip()
         

@@ -10,7 +10,6 @@ class maze:
     def __init__(self, bomberman):
         self.player = bomberman
         self.maze = [[0 for i in range(self.MAZE_SIZE)] for j in range(self.MAZE_SIZE)]
-        self.maze[self.player.x_pos][self.player.y_pos]
 
     def build(self):
         # build the maze with powerups and insert (un)/destrojable walls
@@ -26,6 +25,7 @@ class maze:
                 if j < 3 or j > self.MAZE_SIZE - 4:
                     self.maze[i][j] = 0
                     self.maze[j][i] = 0
+        self.maze[self.player.x_pos][self.player.y_pos] = self.player
 
     def print_maze(self):
         print()
