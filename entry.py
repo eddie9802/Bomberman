@@ -16,18 +16,18 @@ WIDTH = 20
 HEIGHT = 20
 
 # Margin between each cell
-MARGIN = 5
+MARGIN = 1
 
 def draw_board(screen, m):
-    screen.fill(GREEN)
-    for j in range(m.MAZE_SIZE-1, -1, -1):
+    screen.fill(BLACK)
+    for j in range(m.MAZE_SIZE):
         for i in range(m.MAZE_SIZE):
             color = WHITE
             if isinstance(m.maze[i][j], wall) and not m.maze[i][j].is_destructable:
                 color = BLACK
-            if isinstance(m.maze[i][j], wall) and m.maze[i][j].is_destructable:
+            elif isinstance(m.maze[i][j], wall) and m.maze[i][j].is_destructable:
                 color = GREY
-            if isinstance(m.maze[i][j], bomberman):
+            elif isinstance(m.maze[i][j], bomberman):
                 color = RED
             pygame.draw.rect(screen,
                              color,
