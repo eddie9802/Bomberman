@@ -37,7 +37,7 @@ def main():
         Bomberman.handle_keys() # handle the keys
 
         screen.fill((255,255,255)) # fill the screen with white
-        Bomberman.draw(screen) # draw the bird to the screen
+        Bomberman.draw(screen) # draw the bomberman to the screen
         pygame.display.update() # update the screen
 
         clock.tick(40)
