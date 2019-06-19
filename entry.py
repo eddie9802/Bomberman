@@ -3,8 +3,6 @@ from bomberman import bomberman
 from wall import wall
 from maze import maze
 
-# pygame.draw.rect(screen, (0, 200, 0), pygame.Rect(30, 30, 60, 60))
-# Defines colous of blocks within game
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GREY = (128, 128, 128)
@@ -37,41 +35,50 @@ def draw_board(screen, m):
                               HEIGHT])
 
 def main():
-    
     # Game setup
-    b = bomberman(0, 0)
-    m = maze(b)
-    m.build()
+    Bomberman = bomberman(0, 0)
+    Maze = maze(Bomberman)
+    Maze.build()
 
     # Graphics setup
     pygame.init()
     pygame.display.set_caption('Bomberman')
+
+    # Start screen logic
+    screen = pygame.image.load("startscreen.png")
+
     screen = pygame.display.set_mode([1200, 800])
-    #bg = pygame.transform.scale(pygame.image.load("bg.png"), (1200, 800))
-    clock = pygame.time.Clock() # Manages how fast the screen updates
-    #screen.blit(bg, (0, 0))
+    clock = pygame.time.Clock()
 
     playing = True
 
     while playing:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                pygame.quit()
                 playing = False
             elif event.type == pygame.KEYDOWN:
                 if event.key == ord("w"):
-                    m.move_bomberman(0, 1)
-                    m.print_maze()
+                    Maze.move_bomberman(0, 1)
+                    Maze.print_maze()
                 if event.key == ord("d"):
-                    m.move_bomberman(1, 0)
-                    m.print_maze()
+                    Maze.move_bomberman(1, 0)
+                    Maze.print_maze()
                 if event.key == ord("a"):
-                    m.move_bomberman(-1, 0)
-                    m.print_maze()
+                    Maze.move_bomberman(-1, 0)
+                    Maze.print_maze()
                 if event.key == ord("s"):
-                    m.move_bomberman(0, -1)
-                    m.print_maze()
-        draw_board(screen, m)      
-        pygame.display.flip()
+                    Maze.move_bomberman(0, -1)
+                    Maze.print_maze()
+
+        draw_board(screen, Maze)
+        Bomberman.handle_keys() # handle the keys
+
+        screen.fill((255,255,255)) # fill the screen with white
+        Bomberman.draw(screen) # draw the bomberman to the screen
+        pygame.display.update() # update the screen
+
+        clock.tick(40)
         
 if __name__ == "__main__":
     main()
