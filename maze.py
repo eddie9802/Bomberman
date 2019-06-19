@@ -8,8 +8,9 @@ MAZE_SIZE = 11
 class maze:
 
     def __init__(self, bomberman):
-        self.plajer = bomberman
+        self.player = bomberman
         self.maze = [[0 for i in range(MAZE_SIZE)] for j in range(MAZE_SIZE)]
+        self.maze[self.player.x_pos][self.player.y_pos]
 
     def build(self):
         # build the maze with powerups and insert (un)/destrojable walls
@@ -25,13 +26,29 @@ class maze:
                 if j < 3 or j > MAZE_SIZE - 4:
                     self.maze[i][j] = 0
                     self.maze[j][i] = 0
-        
-        for i in range(MAZE_SIZE):
-            for j in range(MAZE_SIZE):
+
+    def print_maze(self):
+        print()
+        for j in range(MAZE_SIZE-1, 0, -1):
+            for i in range(MAZE_SIZE):
                 if isinstance(self.maze[i][j], wall) and self.maze[i][j].is_destructable:
                     print(1, end='')
                 elif isinstance(self.maze[i][j], wall) and not self.maze[i][j].is_destructable:
                     print(2, end='')
+                elif isinstance(self.maze[i][j], bomberman):
+                    print(3, end='')
                 else:
                     print(0, end='')
             print()
+
+    # Moves the bomberman by changing his x,y value
+    def move_bomberman(self, move_x, move_y):
+        if self.player.x_pos + move_x < MAZE_SIZE and self.player.x_pos + move_x >= 0:
+            self.maze[self.player.x_pos][self.player.y_pos] = 0 
+            self.player.x_pos = self.player.x_pos + move_x
+            self.maze[self.player.x_pos][self.player.y_pos] = self.player
+        if self.player.y_pos + move_y < MAZE_SIZE and self.player.y_pos + move_y >= 0: 
+            self.maze[self.player.x_pos][self.player.y_pos] = 0 
+            self.player.y_pos = self.player.y_pos + move_y
+            self.maze[self.player.x_pos][self.player.y_pos] = self.player
+
