@@ -38,13 +38,24 @@ def draw_board(screen, m):
                               (MARGIN + HEIGHT) * j + MARGIN,
                               WIDTH,
                               HEIGHT])
-                        
+
+def destroy_blocks(m, x_pos, y_pos):
+    firepower = 1
+    for x in range(x_pos - firepower, x_pos + firepower + 1):
+        if x >= 0 and x < m.MAZE_SIZE and m.maze[x][y_pos].is_destructable:
+            m.maze[x][y_pos].is_destroyed = True
+    for y in range(y_pos - firepower, y_pos + firepower + 1):
+        if y >= 0 and y < m.MAZE_SIZE and m.maze[x_pos][y].is_destructable:
+            m.maze[x_pos][y].is_destroyed = True
+            
+
 def bomb_timeout(all_bombs, m):
     for bomb in all_bombs:
         seconds=(pygame.time.get_ticks()-bomb[0].start_timer)/1000
         if seconds > 3:
             all_bombs.remove(bomb)
             m.maze[bomb[1]][bomb[2]].has_bomb = False
+            destroy_blocks(m, bomb[1], bomb[2])
 
 def main():
     
